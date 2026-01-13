@@ -1,4 +1,4 @@
-loudBees Multibranch Pipeline Templates
+CloudBees Multibranch Pipeline Templates
 
 This repository contains centrally governed multibranch pipeline templates for CloudBees CI using the Pipeline Template Catalog (PTC) feature.
 
