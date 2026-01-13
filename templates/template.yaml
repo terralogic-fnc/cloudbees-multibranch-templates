@@ -2,15 +2,19 @@ type: pipeline-template
 version: 1
 
 name: Spring Boot Gradle Git Multibranch Pipeline
-description: Spring Boot Gradle Git Multibranch Pipeline
+displayName: Spring Boot Gradle Multibranch
+description: Multibranch pipeline using template catalog
 templateType: MULTIBRANCH
+
 parameters:
   - name: repoUrl
     type: string
     displayName: Repository URL
+
   - name: gitCredentials
-    displayName: Git Credentials
     type: credentials
+    displayName: Git Credentials
+
 multibranch:
   branchSource:
     git:
@@ -23,5 +27,10 @@ multibranch:
         - $class: 'LocalBranchTrait'
         - headWildcardFilter:
             includes: main feature-* fix-*
+
   orphanedItemStrategy:
     numToKeep: 10
+
+  buildStrategies:
+    - pipelineTemplate:
+        template: nodejs-kaniko-ci
