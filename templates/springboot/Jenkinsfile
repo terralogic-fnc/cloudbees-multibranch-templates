@@ -1,9 +1,9 @@
 pipeline {
   agent {
     kubernetes {
-      cloud 'terralogic-eks-agent'
+      cloud 'terralogic-eks-agent-2'
       namespace 'cloudbees-builds'
-      inheritFrom 'jenkins-kaniko-agent'
+      inheritFrom 'jenkins-kaniko-agent-2'
       defaultContainer 'jnlp'
     }
   }
