@@ -1,17 +1,14 @@
 pipeline {
   agent {
     kubernetes {
-      cloud 'terralogic-eks-agent-2'
+      cloud 'terralogic-eks-agent'
       namespace 'cloudbees-builds'
-      inheritFrom 'jenkins-kaniko-agent-2'
+      inheritFrom 'jenkins-kaniko-agent'
       defaultContainer 'jnlp'
     }
   }
 
-  environment {
-    IMAGE_NAME = "kamalakar2210/youtubeclone"
-    CI_IMAGE_TAG = "${env.BUILD_NUMBER}"
-  }
+
 
   stages {
 
@@ -22,17 +19,6 @@ pipeline {
       }
     }
 
-    stage('Kaniko Build & Push (CI Image)') {
-      steps {
-        container('kaniko') {
-          sh '''
-            /kaniko/executor \
-              --context $WORKSPACE \
-              --dockerfile Dockerfile \
-              --destination ${IMAGE_NAME}:${CI_IMAGE_TAG}
-          '''
-        }
-      }
-    }
+
   }
 }
